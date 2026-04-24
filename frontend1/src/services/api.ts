@@ -63,3 +63,4 @@ export const getNotifications = async (userId: string) =>
 
 export const markNotificationRead = async (id: string) =>
   (await api.patch(`/notifications/${id}/read`)).data;
+
