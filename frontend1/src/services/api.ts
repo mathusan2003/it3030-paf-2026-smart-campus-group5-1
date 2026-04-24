@@ -63,3 +63,6 @@ export const getNotifications = async (userId: string) =>
 
 export const markNotificationRead = async (id: string) =>
   (await api.patch(`/notifications/${id}/read`)).data;
+
+export const getBookingSuggestions = async (payload: unknown) =>
+  (await api.post('/ai/booking-suggestions', payload)).data;
