@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+
+// Import sidebar icons
 import {
   AnalyticsIcon,
   BookingIcon,
@@ -9,6 +11,7 @@ import {
   SettingsIcon,
 } from '../utils/icons';
 
+// Sidebar navigation menu items
 const navItems = [
   { label: 'Dashboard', icon: DashboardIcon, path: '/' },
   { label: 'Bookings', icon: BookingIcon, path: '/bookings' },
@@ -18,23 +21,35 @@ const navItems = [
 ];
 
 function Sidebar({ onNewBooking }) {
+  // Get current URL path to highlight active menu
   const location = useLocation();
 
   return (
+    // Main sidebar container
     <aside className="fixed inset-y-0 left-0 z-30 hidden w-72 border-r border-white/6 bg-[#07111f]/95 px-5 py-5 shadow-[20px_0_60px_rgba(0,0,0,0.35)] backdrop-blur-xl lg:flex lg:flex-col">
+      
+      {/* Logo / Brand section */}
       <div className="flex items-center gap-3 rounded-2xl px-1 pb-6">
         <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-400/15 text-emerald-300 ring-1 ring-emerald-400/20">
           <span className="text-lg font-bold">◎</span>
         </div>
+
         <div>
-          <p className="font-display text-lg font-semibold tracking-wide text-white">The Nocturnal</p>
-          <p className="text-[11px] uppercase tracking-[0.35em] text-slate-400">Velvet Tide</p>
+          <p className="font-display text-lg font-semibold tracking-wide text-white">
+            The Nocturnal
+          </p>
+          <p className="text-[11px] uppercase tracking-[0.35em] text-slate-400">
+            Velvet Tide
+          </p>
         </div>
       </div>
 
+      {/* Navigation links */}
       <nav className="grid gap-2 pt-2">
         {navItems.map(({ label, icon: Icon, path }) => {
+          // Check current active page
           const isActive = location.pathname === path;
+
           return (
             <Link
               key={label}
@@ -45,14 +60,26 @@ function Sidebar({ onNewBooking }) {
                   : 'text-slate-400 hover:bg-white/5 hover:text-white'
               }`}
             >
-              <Icon className={`h-5 w-5 ${isActive ? 'text-emerald-300' : 'text-slate-500 group-hover:text-slate-300'}`} />
+              {/* Menu icon */}
+              <Icon
+                className={`h-5 w-5 ${
+                  isActive
+                    ? 'text-emerald-300'
+                    : 'text-slate-500 group-hover:text-slate-300'
+                }`}
+              />
+
+              {/* Menu label */}
               <span className="truncate">{label}</span>
             </Link>
           );
         })}
       </nav>
 
+      {/* Bottom section */}
       <div className="mt-auto space-y-4 pt-6">
+        
+        {/* New Booking button */}
         <button
           type="button"
           onClick={onNewBooking}
@@ -62,13 +89,19 @@ function Sidebar({ onNewBooking }) {
           New Booking
         </button>
 
+        {/* User profile card */}
         <div className="flex items-center gap-3 rounded-2xl border border-white/6 bg-white/5 px-3 py-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-slate-500 to-slate-700 text-sm font-semibold text-white">
             SM
           </div>
+
           <div className="min-w-0">
-            <p className="truncate text-sm font-semibold text-white">Sarmilan</p>
-            <p className="truncate text-xs text-slate-400">User Profile · Admin</p>
+            <p className="truncate text-sm font-semibold text-white">
+              Sarmilan
+            </p>
+            <p className="truncate text-xs text-slate-400">
+              User Profile · Admin
+            </p>
           </div>
         </div>
       </div>
@@ -77,4 +110,3 @@ function Sidebar({ onNewBooking }) {
 }
 
 export default Sidebar;
-
