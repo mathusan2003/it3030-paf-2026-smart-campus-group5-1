@@ -32,7 +32,7 @@ const navigationByRole = {
   ],
   technician: [
     { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
-    { name: 'My Assigned Tickets', href: '/tickets-assigned', icon: Ticket },
+    { name: 'My Tickets', href: '/tickets-assigned', icon: Ticket },
     { name: 'Completed Tasks', href: '/tasks-completed', icon: ClipboardCheck },
     { name: 'Notifications', href: '/notifications', icon: Bell },
   ],
@@ -60,7 +60,7 @@ export default function Sidebar() {
           {filteredNavigation.map((item) => {
             const Icon = item.icon;
             const isActive = location.pathname === item.href;
-            
+
             return (
               <li key={item.name}>
                 <NavLink
